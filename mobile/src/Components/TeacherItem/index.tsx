@@ -9,29 +9,42 @@ import whatsaappIcon from '../../assets/images/icons/whatsapp.png';
 
 import styles from './styles';
 
+export interface Teacher{
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+}
 
-function TeacherItem(){
+interface TeacherItemProps{
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({teacher}) => {
     return (
         <View style={styles.container}>
             <View style={styles.profile}>
                 <Image
                     style={styles.avatar}
-                    source={{ uri: 'https://avatars1.githubusercontent.com/u/59809579?s=460&u=1c96cff34ecc10b16aef63b1f0ccd706b53c1106&v=4' }}
+                    source={{ uri: teacher.avatar }}
                 />
 
                 <View style={styles.profileInfo}>
-                    <Text style={styles.name}>Marcelo Corrêa</Text>
-                    <Text style={styles.subject}>Química</Text>
+                    <Text style={styles.name}>{teacher.name}</Text>
+                    <Text style={styles.subject}>{teacher.subject}</Text>
                 </View>
             </View>
             <Text style={styles.bio}>
-                Sou formado em Análise e desenvolvimentode sistema pelo IFSP Campus Guarulhos, três anos de experiência em desenvolvimento de sistemas web em ASP.Net, VB.Net e SQL Server, além de alguns projetos com C#, inclusive meu TCC, um jogo de RPG tactics. Gosto de Back-end mas me viro bem no front-end.
+                {teacher.bio}
             </Text>
 
             <View style={styles.footer}>
                 <Text style={styles.price}>
                     Preço/hora {'   '}
-                    <Text style={styles.priceValue}>R$ 20,00</Text>
+                    <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
                 </Text>
             
                 <View style={styles.buttonsContainer}>
